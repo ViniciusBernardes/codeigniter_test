@@ -33,36 +33,36 @@
       </nav>
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="<?=site_url('administrador')?>"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
-                class="logo-name">Teste</span>
+          <div class="sidebar-brand" style="margin-top: 20px">
+            <a href="<?=site_url('administrador')?>"> <img alt="image" src="<?=base_url()."assets/img/logo2.png"?>" class="header-logo" /> <span
+                class="logo-name">Teste ezoom</span>
             </a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Main</li>
             <li class="dropdown">
-              <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+              <a href="<?=site_url('administrador')?>" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="book"></i><span>Projetos</span></a>
+                  data-feather="grid"></i><span>Categoria</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?=site_url('projetos/cadastrar')?>">Cadastrar</a></li>
-                <li><a class="nav-link" href="<?=site_url('projetos/gerenciar')?>">Gerenciar</a></li>
+                <li><a class="nav-link" href="<?=site_url('categoria/cadastrar')?>">Cadastrar</a></li>
+                <li><a class="nav-link" href="<?=site_url('categoria/gerenciar')?>">Gerenciar</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>Equipe</span></a>
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="package"></i><span>Produtos</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="">Cadastrar</a></li>
-                <li><a class="nav-link" href="">Gerenciar</a></li>
+                <li><a class="nav-link" href="<?=site_url('produto/cadastrar')?>">Cadastrar</a></li>
+                <li><a class="nav-link" href="<?=site_url('produto/gerenciar')?>">Gerenciar</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user-check"></i><span>Profissional</span></a>
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="globe"></i><span>Coleção</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="">Cadastrar</a></li>
-                <li><a class="nav-link" href="">Gerenciar</a></li>
+                <li><a class="nav-link" href="<?=site_url('categoriaProduto/cadastrar')?>">Cadastrar</a></li>
+                <li><a class="nav-link" href="<?=site_url('categoriaProduto/gerenciar')?>">Gerenciar</a></li>
               </ul>
             </li>
             

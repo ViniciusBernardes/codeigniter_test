@@ -18,6 +18,7 @@ class Administrador extends CI_Controller {
 		
 		$this->load->helper(array('form','url','download'));
 		$this->load->library('form_validation');
+		$this->load->library('session');
 		
 		//$this->load->database();
 		
