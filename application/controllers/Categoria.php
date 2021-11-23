@@ -72,26 +72,26 @@ class Categoria extends CI_Controller {
                 $this->m_categoria->cadastrarFoto($arr);
 
                 //$this->session->set_flashdata('message_ok','Categoria cadastrada com sucesso!');
-                $this->session->set_tempdata('message_ok', 'Categoria cadastrada com sucesso!', 5);
+                $this->session->set_tempdata('message_ok', 'Categoria cadastrada com sucesso!', 2);
 				redirect('categoria/gerenciar');
             }
             else
             {
-                $this->session->set_tempdata('message_erro','Erro ao cadastrar foto '.$this->upload->display_errors(), 5);
+                $this->session->set_tempdata('message_erro','Erro ao cadastrar foto '.$this->upload->display_errors(), 2);
 				redirect('categoria/gerenciar');
             }
             
         }
         else
         {
-            $this->session->set_tempdata('message_erro','Erro ao cadastrar categoria!', 5);
+            $this->session->set_tempdata('message_erro','Erro ao cadastrar categoria!', 2);
 			redirect('categoria/gerenciar');
         }
     }
 
     function gerenciar() 
 	{
-        $this->dados['js'] = array_merge($this->dados['js'], array('assets/bundles/jquery-ui/jquery-ui.min.js', 'assets/bundles/datatables/datatables.min.js', 'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js', 'assets/js/page/datatables.js'));
+        $this->dados['js'] = array_merge($this->dados['js'], array('assets/bundles/jquery-ui/jquery-ui.min.js', 'assets/bundles/datatables/datatables.min.js', 'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js', 'assets/js/page/datatables.js', 'assets/bundles/sweetalert/sweetalert.min.js'));
         $this->dados['css'] = array_merge($this->dados['css'], array('assets/bundles/datatables/datatables.min.css', 'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css'));
 
         $this->dados['categoria'] = $this->m_categoria->getAll();
@@ -99,5 +99,20 @@ class Categoria extends CI_Controller {
         $this->dados['paginaInterna'] = "categoria/gerenciar";
 		$this->load->view($this->tpl, $this->dados);
     }//fim do metodo 
+
+    function excluir($id)
+    {
+        if($this->m_categoria->excluir($id))
+        {
+            $this->session->set_tempdata('message_ok', 'Categoria excluída com sucesso!', 2);
+            redirect('categoria/gerenciar');
+        }
+        else
+        {
+            $this->session->set_tempdata('message_erro','Erro ao tentar excluir categoria', 2);
+            redirect('categoria/gerenciar');
+        }
+
+    }
 
 }
