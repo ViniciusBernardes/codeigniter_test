@@ -22,7 +22,7 @@ class Categoria extends CI_Controller {
 		$this->load->library('pagination');
 		$this->load->library('datas');
 		$this->load->library('util');
-		$this->load->library('moeda');
+		$this->load->library('remove');
         
 		
 		$this->load->database();
@@ -99,6 +99,72 @@ class Categoria extends CI_Controller {
         $this->dados['paginaInterna'] = "categoria/gerenciar";
 		$this->load->view($this->tpl, $this->dados);
     }//fim do metodo 
+
+    function editar($id)
+    {
+        $this->dados['js'] = array_merge($this->dados['js'], array('assets/js/script_img.js'));
+        $this->dados['categoria'] = $this->m_categoria->getId($id);
+		$this->dados['paginaInterna'] = "categoria/editar";
+		$this->load->view($this->tpl, $this->dados);
+    }
+
+    function edit($id)
+    {
+        $array['id']        = $id;
+        $array['categoria'] = $this->input->post('categoria');
+        $array['descricao'] = $this->input->post('descricao');
+        $fotoantiga = $this->input->post('foto');
+        $foto = substr($this->input->post('foto'), 0, -4);
+        
+        $array['img_upload'] = $_FILES['img_upload']['name'];
+        
+        if($array['img_upload'] != null)
+        {
+            $this->load->library('remove');
+			$this->remove->apaga_files("arquivo/categoria", $fotoantiga);
+            
+            $array['foto'] = "1".$foto.substr($array['img_upload'], -4);
+            $novafoto = 
+
+            $config['upload_path']          = './arquivo/categoria';
+            $config['allowed_types']	    = 'jpg|png|jpeg|jpe';
+            $config['detect_mime'] 		    = true;
+            $config['max_size']             = 90000;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+            $config['file_name']            = "1".$foto;
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('img_upload')){
+                
+                $this->m_categoria->alterar($array);
+
+                //$this->session->set_flashdata('message_ok','Categoria cadastrada com sucesso!');
+                $this->session->set_tempdata('message_ok', 'Categoria Alterada com sucesso!', 2);
+				redirect('categoria/gerenciar');
+            }
+            else
+            {
+                $this->session->set_tempdata('message_erro','Erro ao alterar foto '.$this->upload->display_errors(), 2);
+				redirect('categoria/gerenciar');
+            }
+        }
+        else
+        {
+            if($this->m_categoria->alterar($array))
+            {
+                $this->session->set_tempdata('message_ok', 'Categoria Alterada com sucesso!', 2);
+				redirect('categoria/gerenciar');
+            }
+            else
+            {
+                $this->session->set_tempdata('message_erro','Erro ao alterar categoria!', 2);
+			    redirect('categoria/gerenciar');
+            }
+        }
+       
+    }
 
     function excluir($id)
     {
