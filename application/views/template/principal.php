@@ -61,8 +61,8 @@
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="globe"></i><span>Coleção</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?=site_url('categoriaProduto/cadastrar')?>">Cadastrar</a></li>
-                <li><a class="nav-link" href="<?=site_url('categoriaProduto/gerenciar')?>">Gerenciar</a></li>
+                <li><a class="nav-link" href="<?=site_url('colecao/cadastrar')?>">Cadastrar</a></li>
+                <li><a class="nav-link" href="<?=site_url('colecao/gerenciar')?>">Gerenciar</a></li>
               </ul>
             </li>
             
