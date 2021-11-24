@@ -53,7 +53,7 @@
                             <td><?=$produtos['produto']?></td>
                             <td><?=$produtos['descricao']?></td>
                             <td>
-                              <img alt="image" src="<?=base_url()."arquivo/produto/".$produtos['foto']?>" width="50">
+                              <img alt="image" src="<?=base_url()."arquivo/produto/".$produtos['foto']?>" width="150">
                             </td>
                             <td>R$ <?=$this->moeda->format_valor($produtos['valor'])?></td>
                             <td>
@@ -92,9 +92,9 @@ function excluir_produto(id)
   })
     .then((willDelete) => {
       if (willDelete) {
-        swal('Produto excluído com sucesso!', {
+        /*swal('Produto excluído com sucesso!', {
           icon: 'success',
-        });
+        });*/
         url = '<?=site_url('produto')?>'+'/excluir/'+id;
         window.location = url;
       } 

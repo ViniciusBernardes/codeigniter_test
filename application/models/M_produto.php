@@ -154,4 +154,22 @@ class M_produto extends CI_Model
 		}	
 	}
 
+	public function verificarProduto($produto)
+	{
+		$query = " count(*) as qnt from categoria_produto where produto = ".$produto;
+		$this->db->select($query, FALSE);
+		$query1 = $this->db->get();
+		foreach ($query1->result() as $row)
+		{
+			$result = $row->qnt;
+		}
+		if(!isset($result))
+		{
+			return '0';
+		}
+		else
+		{
+			return $result;
+		}
+	}
 }

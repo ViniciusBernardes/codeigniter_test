@@ -26,6 +26,7 @@ class Produto extends CI_Controller {
 		$this->load->database();
 		
         $this->load->model('m_produto');
+        $this->load->model('m_colecao');
 		
 		//seta o template a ser utilizado
 		$this->tpl = 'template/principal';
@@ -169,14 +170,22 @@ class Produto extends CI_Controller {
 
     function excluir($id)
     {
-        if($this->m_produto->excluir($id))
+        if($this->m_produto->verificarProduto($id) == "0")
         {
-            $this->session->set_tempdata('message_ok', 'Produto excluído com sucesso!', 2);
-            redirect('produto/gerenciar');
+            if($this->m_produto->excluir($id))
+            {
+                $this->session->set_tempdata('message_ok', 'Produto excluído com sucesso!', 2);
+                redirect('produto/gerenciar');
+            }
+            else
+            {
+                $this->session->set_tempdata('message_erro','Erro ao tentar excluir Produto', 2);
+                redirect('produto/gerenciar');
+            }
         }
         else
         {
-            $this->session->set_tempdata('message_erro','Erro ao tentar excluir Produto', 2);
+            $this->session->set_tempdata('message_erro','Não foi possível apagar o produto, existe alguma coleção vinculada a ele.', 2);
             redirect('produto/gerenciar');
         }
 

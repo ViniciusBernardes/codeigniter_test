@@ -167,14 +167,22 @@ class Categoria extends CI_Controller {
 
     function excluir($id)
     {
-        if($this->m_categoria->excluir($id))
+        if($this->m_categoria->verificarCategoria($id) == "0")
         {
-            $this->session->set_tempdata('message_ok', 'Categoria excluída com sucesso!', 2);
-            redirect('categoria/gerenciar');
+            if($this->m_categoria->excluir($id))
+            {
+                $this->session->set_tempdata('message_ok', 'Categoria excluída com sucesso!', 2);
+                redirect('categoria/gerenciar');
+            }
+            else
+            {
+                $this->session->set_tempdata('message_erro','Erro ao tentar excluir categoria', 2);
+                redirect('categoria/gerenciar');
+            }
         }
         else
         {
-            $this->session->set_tempdata('message_erro','Erro ao tentar excluir categoria', 2);
+            $this->session->set_tempdata('message_erro','Não foi possível apagar a categoria, existe alguma coleção vinculada a ela.', 2);
             redirect('categoria/gerenciar');
         }
 

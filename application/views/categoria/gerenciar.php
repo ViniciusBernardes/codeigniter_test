@@ -53,7 +53,7 @@
                             <td><?=$categorias['categoria']?></td>
                             <td><?=$categorias['descricao']?></td>
                             <td>
-                              <img alt="image" src="<?=base_url()."arquivo/categoria/".$categorias['foto']?>" width="50">
+                              <img alt="image" src="<?=base_url()."arquivo/categoria/".$categorias['foto']?>" width="150">
                             </td>
                             <td><?=$this->datas->EnToBr($categorias['data'])?></td>
                             <td>
@@ -92,9 +92,9 @@ function excluir_categoria(id)
   })
     .then((willDelete) => {
       if (willDelete) {
-        swal('Arquivo excluído com sucesso!', {
+        /*swal('Arquivo excluído com sucesso!', {
           icon: 'success',
-        });
+        });*/
         url = '<?=site_url('categoria')?>'+'/excluir/'+id;
         window.location = url;
       } 
