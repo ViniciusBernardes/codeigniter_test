@@ -7,3 +7,6 @@
 
 "use strict";
 
+jQuery(function(){
+	jQuery("#valor").maskMoney({symbol:'', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+ })
