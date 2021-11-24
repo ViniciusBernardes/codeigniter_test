@@ -21,6 +21,7 @@ class Administrador extends CI_Controller {
 		
         $this->load->model('m_categoria');
         $this->load->model('m_produto');
+        $this->load->model('m_colecao');
 		
 		//seta o template a ser utilizado
 		$this->tpl = 'template/principal';
@@ -36,6 +37,7 @@ class Administrador extends CI_Controller {
 	{
         $this->dados['categorias'] = $this->m_categoria->totalCategotias();
         $this->dados['produtos'] = $this->m_produto->totalProdutos();
+        $this->dados['colecao'] = $this->m_colecao->totalColecao();
 
 		$this->dados['paginaInterna'] = "dashboard/index";
 		$this->load->view($this->tpl, $this->dados);
