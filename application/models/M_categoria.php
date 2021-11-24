@@ -133,8 +133,22 @@ class M_categoria extends CI_Model
 		}	
 	}
 
-	public function teste()
+	public function totalCategotias()
 	{
-		return 1;
+		$query = " count(*) as cont from categoria";
+		$this->db->select($query, FALSE);
+		$query1 = $this->db->get();
+		foreach ($query1->result() as $row)
+		{
+			$result = $row->cont;
+		}
+		if(!isset($result))
+		{
+			return '0';
+		}
+		else
+		{
+			return $result;
+		}	
 	}
 }

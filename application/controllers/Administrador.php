@@ -19,7 +19,8 @@ class Administrador extends CI_Controller {
 		
 		$this->load->database();
 		
-        //$this->load->model('m_local');
+        $this->load->model('m_categoria');
+        $this->load->model('m_produto');
 		
 		//seta o template a ser utilizado
 		$this->tpl = 'template/principal';
@@ -33,6 +34,9 @@ class Administrador extends CI_Controller {
     //**************************************************************************
     function index() 
 	{
+        $this->dados['categorias'] = $this->m_categoria->totalCategotias();
+        $this->dados['produtos'] = $this->m_produto->totalProdutos();
+
 		$this->dados['paginaInterna'] = "dashboard/index";
 		$this->load->view($this->tpl, $this->dados);
     }//fim do metodo index
