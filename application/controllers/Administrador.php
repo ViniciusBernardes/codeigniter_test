@@ -1,8 +1,5 @@
-<?php //ob_start();
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
-*/
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Administrador extends CI_Controller {
     private $tpl; // template
@@ -20,7 +17,7 @@ class Administrador extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('session');
 		
-		//$this->load->database();
+		$this->load->database();
 		
         //$this->load->model('m_local');
 		
