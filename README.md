@@ -1,5 +1,5 @@
 # ezoom_backend
-Teste para ezoom feito em codeigniter
+
 - Criaçao do CRUD com relacionamento da tabela categoria e produto
 - Utilizado tres CRUD (Cadastro de Categoria, produto e coleçao)
 - Layout responsivo
